@@ -1,0 +1,63 @@
+{
+    "name": "webisters/minify",
+    "description": "Webisters Minify Library",
+    "license": "GPL-3.0-or-later",
+    "type": "library",
+    "keywords": [
+        "minify",
+        "compression",
+        "html",
+        "css",
+        "js",
+        "javascript"
+    ],
+    "authors": [
+        {
+            "name": "Hafiz Muhammad Moaz",
+            "email": "hafizmoazkhalid@gmail.com",
+            "homepage": "https://github.com/HafizMMoaz"
+        }
+    ],
+    "homepage": "https://webisters.com/packages/minify",
+    "support": {
+        "email": "support@webisters.com",
+        "issues": "https://github.com/webisters/minify/issues",
+        "forum": "https://github.com/webisters/forum",
+        "source": "https://github.com/webisters/minify",
+        "docs": "https://webisters.com"
+    },
+    "funding": [
+        {
+            "type": "Webisters Sponsor",
+            "url": "https://webisters.com/sponsor"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "ext-dom": "*",
+        "ext-libxml": "*"
+    },
+    "require-dev": {
+        "webisters/coding-standard": "*",
+        "phpunit/phpunit": "^9.5"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Framework\\Minify\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\Minify\\": "tests/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    }
+}
+
+
