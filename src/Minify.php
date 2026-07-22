@@ -39,7 +39,7 @@ class Minify
         bool $enableCss = true
     ) : string {
         $contents = \trim($contents);
-        if ($contents && ! ( ! $enableHtml && ! $enableCss && ! $enableJs)) {
+        if ($contents && !(!$enableHtml && !$enableCss && !$enableJs)) {
             if ($enableJs || $enableCss) {
                 // You need php-xml to support PHP DOM
                 $dom = new DOMDocument();
@@ -50,7 +50,7 @@ class Minify
                     // Get all script Tags and minify them
                     $scripts = $dom->getElementsByTagName('script');
                     foreach ($scripts as $script) {
-                        if ( ! empty($script->nodeValue)) {
+                        if (!empty($script->nodeValue)) {
                             $script->nodeValue = static::js($script->nodeValue);
                         }
                     }
@@ -59,7 +59,7 @@ class Minify
                     // Get all style Tags and minify them
                     $styles = $dom->getElementsByTagName('style');
                     foreach ($styles as $style) {
-                        if ( ! empty($style->nodeValue)) {
+                        if (!empty($style->nodeValue)) {
                             $style->nodeValue = static::css($style->nodeValue);
                         }
                     }
@@ -182,9 +182,9 @@ class Minify
         }
         return \preg_replace([
             // Remove comment(s)
-            '#("(?:[^"\\\]++|\\\.)*+"|\'(?:[^\'\\\\]++|\\\.)*+\')|\/\*(?!\!)(?>.*?\*\/)|^\s*|\s*$#s',
+            '#("(?:[^"\\\]++|\\\.)*+"|\'(?:[^\'\\\]++|\\\.)*+\')|\/\*(?!\!)(?>.*?\*\/)|^\s*|\s*$#s',
             // Remove unused white-space(s)
-            '#("(?:[^"\\\]++|\\\.)*+"|\'(?:[^\'\\\\]++|\\\.)*+\'|\/\*(?>.*?\*\/))|\s*+;\s*+(})\s*+|\s*+([*$~^|]?+=|[{};,>~+]|\s*+-(?![0-9\.])|!important\b)\s*+|([[(:])\s++|\s++([])])|\s++(:)\s*+(?!(?>[^{}"\']++|"(?:[^"\\\]++|\\\.)*+"|\'(?:[^\'\\\\]++|\\\.)*+\')*+{)|^\s++|\s++\z|(\s)\s+#si',
+            '#("(?:[^"\\\]++|\\\.)*+"|\'(?:[^\'\\\]++|\\\.)*+\'|\/\*(?>.*?\*\/))|\s*+;\s*+(})\s*+|\s*+([*$~^|]?+=|[{};,>~+]|\s*+-(?![0-9\.])|!important\b)\s*+|([[(:])\s++|\s++([])])|\s++(:)\s*+(?!(?>[^{}"\']++|"(?:[^"\\\]++|\\\.)*+"|\'(?:[^\'\\\]++|\\\.)*+\')*+{)|^\s++|\s++\z|(\s)\s+#si',
             // Replace `0(cm|em|ex|in|mm|pc|pt|px|vh|vw|%)` with `0`
             '#(?<=[\s:])(0)(cm|em|ex|in|mm|pc|pt|px|vh|vw|%)#si',
             // Replace `:0 0 0 0` with `:0`
@@ -244,9 +244,9 @@ class Minify
         }
         return \preg_replace([
             // Remove comment(s)
-            '#\s*("(?:[^"\\\]++|\\\.)*+"|\'(?:[^\'\\\\]++|\\\.)*+\')\s*|\s*\/\*(?!\!|@cc_on)(?>[\s\S]*?\*\/)\s*|\s*(?<![\:\=])\/\/.*(?=[\n\r]|$)|^\s*|\s*$#',
+            '#\s*("(?:[^"\\\]++|\\\.)*+"|\'(?:[^\'\\\]++|\\\.)*+\')\s*|\s*\/\*(?!\!|@cc_on)(?>[\s\S]*?\*\/)\s*|\s*(?<![\:\=])\/\/.*(?=[\n\r]|$)|^\s*|\s*$#',
             // Remove white-space(s) outside the string and regex
-            '#("(?:[^"\\\]++|\\\.)*+"|\'(?:[^\'\\\\]++|\\\.)*+\'|\/\*(?>.*?\*\/)|\/(?!\/)[^\n\r]*?\/(?=[\s.,;]|[gimuy]|$))|\s*([!%&*\(\)\-=+\[\]\{\}|;:,.<>?\/])\s*#s',
+            '#("(?:[^"\\\]++|\\\.)*+"|\'(?:[^\'\\\]++|\\\.)*+\'|\/\*(?>.*?\*\/)|\/(?!\/)[^\n\r]*?\/(?=[\s.,;]|[gimuy]|$))|\s*([!%&*\(\)\-=+\[\]\{\}|;:,.<>?\/])\s*#s',
             // Remove the last semicolon
             '#;+\}#',
             // Minify object attribute(s) except JSON attribute(s). From `{'foo':'bar'}` to `{foo:'bar'}`
